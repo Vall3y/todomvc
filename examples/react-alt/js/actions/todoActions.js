@@ -22,11 +22,7 @@ var app = app || {};
 		app.todoActions,
 		app.alt.createActions({
 			addTodo: function (title) {
-				return {
-					id: Utils.uuid(),
-					title: title,
-					completed: false
-				};
+				return Utils.parseTodoTitle(title);
 			}
 		})
 	);

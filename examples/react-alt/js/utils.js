@@ -45,6 +45,18 @@ var app = app || {};
 				}
 			}
 			return newObj;
+		},
+
+		parseTodoTitle: function (title) {
+			var regexResults = title.match(/.+ #(.+)/)
+			var tag = regexResults && regexResults[1];
+
+			return {
+				tag: tag,
+				id: this.uuid(),
+				title: title,
+				completed: false
+			};
 		}
 	};
 })();

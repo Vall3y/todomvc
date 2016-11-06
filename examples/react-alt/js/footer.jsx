@@ -6,21 +6,12 @@ var app = app || {};
 
 (function () {
 	'use strict';
+	let TagFilter = app.TagFilter;
+  let PriceFilter = app.PriceFilter;
 
 	app.TodoFooter = React.createClass({
 		render: function () {
 			var activeTodoWord = app.Utils.pluralize(this.props.count, 'item');
-			var clearButton = null;
-
-			if (this.props.completedCount > 0) {
-				clearButton = (
-					<button
-						className="clear-completed"
-						onClick={this.props.onClearCompleted}>
-						Clear completed
-					</button>
-				);
-			}
 
 			// React idiom for shortcutting to `classSet` since it'll be used often
 			var cx = React.addons.classSet;
@@ -43,7 +34,7 @@ var app = app || {};
 							<a
 								href="#/active"
 								className={cx({selected: nowShowing === app.ACTIVE_TODOS})}>
-									Active
+									Pending
 							</a>
 						</li>
 						{' '}
@@ -51,11 +42,12 @@ var app = app || {};
 							<a
 								href="#/completed"
 								className={cx({selected: nowShowing === app.COMPLETED_TODOS})}>
-									Completed
+									In cart
 							</a>
 						</li>
 					</ul>
-					{clearButton}
+					<TagFilter />
+					<PriceFilter />
 				</footer>
 			);
 		}
